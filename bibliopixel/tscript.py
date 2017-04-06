@@ -4,13 +4,12 @@ import random
 from interpretMood import*
 # from /Users/Seth/repos/BiblioPixel/bibliopixel import*
 
-# Run test
+# Test shape generation
 
-sampleRhythmicIntensities = [0]*100;
-blue = (0,255,0);	#sample color for shape
-for i in range(0, 100):
-	sampleRhythmicIntensities[i] = random.random()
-print makeDisplay(sampleRhythmicIntensities, blue)
-#~ 
-#~ # test new genColor function
-print genColor(genMood(key='Cma'))
+sampleVolumes = [0]*10
+for i in range(0, 10):
+	sampleVolumes[i] = random.random()
+
+color = genColor(genMood(key='Cma'))
+animationInputs = makeDisplay(sampleVolumes, color)
+#~ display(1, animationInputs)
