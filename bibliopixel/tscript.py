@@ -9,7 +9,7 @@ from interpretMood import*
 sampleVolumes = [0]*10
 for i in range(0, 10):
 	sampleVolumes[i] = random.random()
+	print sampleVolumes[i]
 
 color = genColor(genMood(key='Cma'))
-animationInputs = makeDisplay(sampleVolumes, color)
-#~ display(1, animationInputs)
+makeDisplay(sampleVolumes, 1, color)

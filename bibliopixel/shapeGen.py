@@ -32,7 +32,7 @@ led = LEDMatrix(driver,rotation = 2,vert_flip = True) # Correct Orientation
 
 square = 0
 
-def makeDisplay(volumes, color, shape=None):
+def makeDisplay(volumes, deltaT, color, shape=None):
 	""" 
 	- Takes in a string, shape to be generated (e.g. square, circle, etc.) - default is square
 	- Takes in an array of ints, time series data of the rhythmic intensity or volume level
@@ -42,21 +42,18 @@ def makeDisplay(volumes, color, shape=None):
 	if shape is None:
 		shape = square
 
-	animationInputs = [0]*len(volumes);		
 	for i in range(0, len(volumes)):
 		# assume shape is square
+		print volumes[i]
 		if volumes[i] < 0.5:
-			animationInputs[i] = (3, 3, 2, 2, color)
+			led.fillRect(3, 3, 2, 2, color)
+			print 'small'
 		elif volumes[i] >= 0.5 and volumes < 0.7:
-			animationInputs[i] = (2, 2, 4, 5, color)
+			led.fillRect(2, 2, 4, 5, color)
 		elif volumes[i] >= 0.7 and volumes < 0.9:
-			animationInputs[i] = (1, 1, 6, 6, color)
+			led.fillRect(1, 1, 6, 6, color)
 		elif volumes[i] >= 0.9:
-			animationInputs[i] = (0, 0, 8, 8, color)
-	
-	return animationInputs;
-	
-def display(deltaT, animationInputs):
-	for i in animationInputs:
-		led.fillRect(animationInputs[i])
+			led.fillRect(0, 0, 8, 8, color)
+			print 'large'
 		sleep(deltaT)
+
