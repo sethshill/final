@@ -1,34 +1,15 @@
 # Python file for generator shapes
 from bibliopixel.led import*
-from bibliopixel.animation import MatrixCalibrationTest
 from bibliopixel.drivers.APA102 import*
-import bibliopixel.colors as colors
-from LEDfuncs import*
-from time import sleep
-from animation import*
-import numpy
+import time
+import animation
 
 # Global Vars
 NUM = 8*8
-rainbow = [colors.Red, colors.Orange, colors.Yellow, colors.Green, colors.Blue, colors.Indigo, colors.Violet]
-Red = colors.Red
-Orange = colors.Orange
-Yellow = colors.Yellow
-Green = colors.Green
-Blue = colors.Blue
-Indigo = colors.Indigo
-Violet = colors.Violet
 
 #create driver for a 8*8 grid, use the size of your display
 driver = DriverAPA102(NUM, c_order = ChannelOrder.BGR) # 64 LEDs, 2 MHz speed using SPI, BRG order
 led = LEDMatrix(driver,rotation = 2,vert_flip = True) # Correct Orientation
-
-# class MakeShape:
-# 	def __init__(self, array, arrayo):
-# 		self.array = [];
-# 		self.arrayOfRectangles = [];
-
-# 	def makeInputs(self):
 
 square = 0
 
@@ -43,17 +24,15 @@ def makeDisplay(volumes, deltaT, color, shape=None):
 		shape = square
 
 	for i in range(0, len(volumes)):
+		millis = int(round(time.time() * 1000))
 		# assume shape is square
-		print volumes[i]
 		if volumes[i] < 0.5:
 			led.fillRect(3, 3, 2, 2, color)
-			print 'small'
 		elif volumes[i] >= 0.5 and volumes < 0.7:
 			led.fillRect(2, 2, 4, 5, color)
 		elif volumes[i] >= 0.7 and volumes < 0.9:
 			led.fillRect(1, 1, 6, 6, color)
 		elif volumes[i] >= 0.9:
 			led.fillRect(0, 0, 8, 8, color)
-			print 'large'
-		sleep(deltaT)
-
+		while (int(round(time.time() * 1000)) - millis < deltaT):
+			pass

@@ -6,10 +6,16 @@ from interpretMood import*
 
 # Test shape generation
 
-sampleVolumes = [0]*10
-for i in range(0, 10):
-	sampleVolumes[i] = random.random()
-	print sampleVolumes[i]
+#~ sampleVolumes = [0]*10
+#~ for i in range(0, 10):
+	#~ sampleVolumes[i] = random.random()
+	#~ print sampleVolumes[i]
+#~ 
+#~ color = genColor(genMood(key='Cma'))
+#~ makeDisplay(sampleVolumes, 33, color)
 
-color = genColor(genMood(key='Cma'))
-makeDisplay(sampleVolumes, 1, color)
+# Basic Test
+import bibliopixel.colors as colors
+Red = colors.Red
+
+fillRect(2,2,1,1,red)

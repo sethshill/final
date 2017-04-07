@@ -22,7 +22,7 @@ Violet = colors.Violet
 
 #create driver for a 8*8 grid, use the size of your display
 driver = DriverAPA102(NUM, c_order = ChannelOrder.BGR) # 64 LEDs, 2 MHz speed using SPI, BRG order
-led = LEDMatrix(driver,rotation = 2,vert_fkjlip = True) # Correct Orientation
+led = LEDMatrix(driver,rotation = 2,vert_flip = True) # Correct Orientation
 
 #########################################################################################
 # Test script
@@ -31,10 +31,11 @@ led = LEDMatrix(driver,rotation = 2,vert_fkjlip = True) # Correct Orientation
 #~ anim = MatrixCalibrationTest(led)
 #~ anim.run()
 
-#~ # Matrix Channel Test
-#~ anim = MatrixChannelTest(led)
-#~ anim.run()
+# Matrix Channel Test
+anim = MatrixChannelTest(led)
+anim.run()
 
+fillRect(2,2,1,1,orange)
 #~ # Set Brightness
 #~ led.setMasterBrightness(255)
 
