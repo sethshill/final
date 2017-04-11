@@ -21,5 +21,7 @@ class MatrixTest(BaseMatrixAnim):
 		for i in range(self._led.numLEDs):
 			self._led.drawRect(-1, -1, i+1, i+1, self._colors[(self._step + i) % len(self._colors)])
 		self._step += amt
-anim = MatrixTest(led)
-anim.run()
+#~ anim = MatrixTest(led)
+#~ anim.run()
+
+led.drawRect(2,2,2,2,colors.Red)
