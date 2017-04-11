@@ -1,9 +1,11 @@
 # Python file for generator shapes
 from bibliopixel.led import*
 from bibliopixel.drivers.APA102 import*
-import time
-import animation
 
+import time
+from animation import*
+from interpretMood import*
+import random
 # Global Vars
 NUM = 8*8
 
@@ -35,6 +37,4 @@ def makeDisplay(volumes, deltaT, color, shape=None):
 		elif volumes[i] >= 0.9:
 			led.fillRect(0, 0, 8, 8, color)
 		while (int(round(time.time() * 1000)) - millis < deltaT):
-			pass
-			
-			
+			pass 

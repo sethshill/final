@@ -1,13 +1,13 @@
 # Configuration test file
 
 from bibliopixel.led import*
-from bibliopixel.animation import MatrixCalibrationTest
+#~ from bibliopixel.animation import MatrixCalibrationTest
 from bibliopixel.drivers.APA102 import*
 import bibliopixel.colors as colors
-from LEDfuncs import*
-from time import sleep
-from animation import*
-import numpy
+#~ from LEDfuncs import*
+#~ from time import sleep
+#~ from animation import*
+#~ import numpy
 
 # Global Vars
 NUM = 8*8
@@ -32,8 +32,8 @@ led = LEDMatrix(driver,rotation = 2,vert_flip = True) # Correct Orientation
 #~ anim.run()
 
 # Matrix Channel Test
-anim = MatrixChannelTest(led)
-anim.run()
+#~ anim = MatrixChannelTest(led)
+#~ anim.run()
 
 fillRect(2,2,1,1,orange)
 #~ # Set Brightness
@@ -71,19 +71,19 @@ fillRect(2,2,1,1,orange)
 
 #~ # Make Animation with Growing Rectangle
 #~ while True:
-#~ led.drawRect(3, 3, 2, 2, Red)
-#~ led.update()
-#~ sleep(1)
-#~ led.drawRect(2, 2, 4, 4, Red)
-#~ led.update()
-#~ sleep(1)
-#~ led.drawRect(1, 1, 6, 6, Red)
-#~ led.update()
-#~ sleep(1)
-#~ led.drawRect(0, 0, 8, 8, Red)
-#~ led.update()
-#~ off()
-#~ sleep(1)	
+	#~ led.drawRect(3, 3, 2, 2, Red)
+	#~ led.update()
+	#~ sleep(1)
+	#~ led.drawRect(2, 2, 4, 4, Red)
+	#~ led.update()
+	#~ sleep(1)
+	#~ led.drawRect(1, 1, 6, 6, Red)
+	#~ led.update()
+	#~ sleep(1)
+	#~ led.drawRect(0, 0, 8, 8, Red)
+	#~ led.update()
+	#~ off()
+	#~ sleep(1)	
 	
 #~ # Use base animation
 #~ class MatrixTest(BaseMatrixAnim):
@@ -108,4 +108,4 @@ fillRect(2,2,1,1,orange)
 #~ anim = MatrixTest(led)
 #~ anim.run()
 
-array = numpy.random.rand(100)
+#~ array = numpy.random.rand(100)
