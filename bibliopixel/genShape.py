@@ -26,7 +26,6 @@ def makeDisplay(volumes, deltaT, color, shape=None):
 		shape = square
 
 	for i in range(0, len(volumes)):
-		millis = int(round(time.time() * 1000))
 		# assume shape is square
 		if volumes[i] < 0.5:
 			led.fillRect(3, 3, 2, 2, color)
@@ -36,5 +35,4 @@ def makeDisplay(volumes, deltaT, color, shape=None):
 			led.fillRect(1, 1, 6, 6, color)
 		elif volumes[i] >= 0.9:
 			led.fillRect(0, 0, 8, 8, color)
-		while (int(round(time.time() * 1000)) - millis < deltaT):
-			pass 
+

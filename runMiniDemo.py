@@ -21,36 +21,43 @@ from time import sleep
 
 # For testing
 import random
+off = (0,0,0)
 
 class Visualize(BaseMatrixAnim):
 	def __init__(self, led, color, shapes):
 		super(Visualize, self).__init__(led)
-		self.colorVal = color
-		self.shapeVals = shapes
+		self._colorVal = color
+		self._shapeVals = shapes
+		self._numShapes = len(shapes)
+		self._colors = [colors.Red, colors.Orange, colors.Green, colors.Blue, colors.Indigo]
+		self._testShapes = [[1,1,6,6,colors.Green], [3,3,1,1,colors.Red], [2,2,4,4,colors.Orange]]
 		
-	def step(self, amt = 1):
-		for i in range(len(self.shapeVals)):
-			self._led.fillRect(self.shapeVals[i][0], self.shapeVals[i][1], self.shapeVals[i][2], self.shapeVals[i][3], self.colorVal)
-		self._step += amt
+	#~ def step(self, amt = 1):
+		#~ for i in range(self._led.numLEDs):
+			#~ self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
+		#~ self._step += amt
 	
-	def testRect(self, x, y, w, h, color = None):
-		self._led.fillRect(x, y, w, h, color)	
-		print 'inside function'
-		print x
-		
-def done():
-	print 'Done'
-			
+	def step(self, amt = 1):
+		for i in range(self._led.numLEDs):
+			self._led.fillRect(1,1,6,6,self._colors[self._step])
+		#~ if self._step % 2 == 0:
+			#~ for i in range(self._led.numLEDs):
+				#~ self._led.fillScreen(colors.Blue)
+		#~ else:
+			#~ for i in range(self._led.numLEDs):
+				#~ self._led.fillRect(2,2,4,4,colors.Red)
+		self._step += amt
 
 # Create sample volumes
 sampleVolumes = [0]*10
 for i in range(0, 10):
 	sampleVolumes[i] = random.random()
+print sampleVolumes
 # Get color and shape from values
 color = genColor(genMood(key='Cma'))
 shapes = genShapes(sampleVolumes)
+print shapes
 # Create object and set values
 visualize = Visualize(led, color, shapes)
 # Run object
-#~ visualize.run(sleep = 500)
-visualize.testRect(2,2,3,3,(255,0,0))
+#~ visualize.run(sleep = 500, max_steps = len(visualize._colors))

@@ -37,6 +37,7 @@ def genColor(mood):
 	if mood.valence < 50 and mood.arousal < 50:
 		# Describes Contentment
 		return Yellow
+	print color
 
 def genMood(mood = Mood(50,50), key = None,rhythm = None,tempo= None):
 	"""Takes in a string (key) and 3 integers (rythIntensity, dynamic, tempo). Returns a tuple of arousal and valence levels."""
