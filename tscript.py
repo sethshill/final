@@ -4,6 +4,7 @@ from bibliopixel.led import*
 from bibliopixel.drivers.APA102 import*
 import bibliopixel.colors as colors
 from bibliopixel.animation import*
+from time import sleep
 
 #### Setup #####
 # Global Vars
@@ -19,12 +20,17 @@ class MatrixTest(BaseMatrixAnim):
 		self._colors = [colors.Red, colors.Orange, colors.Yellow, colors.Green, colors.Blue, colors.Indigo]
 		
 	def step(self, amt = 1):
-		for i in range(self._led.numLEDs):
-			self._led.drawRect(-1, -1, i+1, i+1, self._colors[(self._step + i) % len(self._colors)])
+		if self._step % 2 == 0:
+			self._led.drawRect(2,2,4,4,colors.Indigo)
+			#~ for i in range(self._led.numLEDs):
+				#~ self._led.drawRect(-1, -1, i+1, i+1, self._colors[(self._step + i) % len(self._colors)])
+		else:
+			self._led.fillRect(1,1,6,6,colors.Orange)
 		self._step += amt
 		
 def done():
 	print 'Done'
 			
 anim = MatrixTest(led)
-anim.run(untilComplete = True, max_cycles = 1, callback = done)
+#~ anim.run(untilComplete = True, max_cycles = 1, callback = done)
+anim.run(sleep = 500)

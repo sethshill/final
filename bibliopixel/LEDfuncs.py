@@ -163,3 +163,4 @@ def mkSqr(r,g,b,time=None):
 		#~ off()
 		#~ sleep(1)
 		#~ sleep(1)
+off()
