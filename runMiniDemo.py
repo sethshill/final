@@ -8,6 +8,7 @@ from bibliopixel.animation import*
 
 # Global Vars
 NUM = 8*8
+shapes = ['square', 'circle']
 
 #create driver for a 8*8 grid, use the size of your display
 driver = DriverAPA102(NUM, c_order = ChannelOrder.BGR, SPISpeed = 16) # 64 LEDs, 2 MHz speed using SPI, BRG order
@@ -23,18 +24,25 @@ from time import sleep
 import random
 
 class Visualize(BaseMatrixAnim):
-	def __init__(self, led, color, shapes):
+	def __init__(self, led, color, shape, shapes):
 		super(Visualize, self).__init__(led)
 		self._colorVal = color
+		self._shape = shape
 		self._shapeVals = shapes
 		self._numShapes = len(shapes)
 		
 	def step(self, amt = 1):
 		# Set background
-		for i in range(self._led.numLEDs):
+		#~ for i in range(self._led.numLEDs):
 			#~ self._led.fillScreen(colors.Blue)
-			self._led.all_off()
+			#~ self._led.all_off()
 		# Set shape
+		#~ if shape is 'square':
+			#~ for i in range(self._led.numLEDs):
+				#~ self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
+		#~ elif shape is 'circle':
+			#~ for i in range(self._led.numLEDs):
+				#~ self._led.fillCircle(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._colorVal)
 		for i in range(self._led.numLEDs):
 			self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
 		self._step += amt
@@ -45,8 +53,9 @@ for i in range(0, 100):
 	sampleVolumes[i] = random.random()
 # Get color and shape from values
 color = genColor(genMood(key='Cma'))
+#~ shape = random.choice(shapes)
 shapes = genShapes(sampleVolumes)
 # Create object and set values
-visualize = Visualize(led, color, shapes)
+visualize = Visualize(led, color, 'square', shapes)
 # Run object
 visualize.run(sleep = 100, max_steps = visualize._numShapes)
