@@ -8,7 +8,6 @@ from bibliopixel.animation import*
 
 # Global Vars
 NUM = 8*8
-shapes = ['square', 'circle']
 
 #create driver for a 8*8 grid, use the size of your display
 driver = DriverAPA102(NUM, c_order = ChannelOrder.BGR, SPISpeed = 16) # 64 LEDs, 2 MHz speed using SPI, BRG order
@@ -24,10 +23,11 @@ from time import sleep
 import random
 
 class Visualize(BaseMatrixAnim):
-	def __init__(self, led, color, shape, shapes):
+	def __init__(self, led, color, number, shapes):
 		super(Visualize, self).__init__(led)
 		self._colorVal = color
-		self._shape = shape
+		self._num = number
+		self._shapeTypes = ["square", "circle"]
 		self._shapeVals = shapes
 		self._numShapes = len(shapes)
 		
@@ -37,16 +37,19 @@ class Visualize(BaseMatrixAnim):
 			#~ self._led.fillScreen(colors.Blue)
 			#~ self._led.all_off()
 		# Set shape
-		#~ if shape is 'square':
-			#~ for i in range(self._led.numLEDs):
-				#~ self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
-		#~ elif shape is 'circle':
-			#~ for i in range(self._led.numLEDs):
-				#~ self._led.fillCircle(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._colorVal)
-		for i in range(self._led.numLEDs):
-			self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
-		self._step += amt
-
+		if self._num > 0.5:
+			#make square
+			for i in range(self._led.numLEDs):
+				self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
+		elif self._num <= 0.5:
+			#make circle
+			for i in range(self._led.numLEDs):
+				self._led.fillCircle(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._colorVal)
+		#~ for i in range(self._led.numLEDs):
+			#~ self._led.fillRect(self._shapeVals[self._step][0], self._shapeVals[self._step][1], self._shapeVals[self._step][2], self._shapeVals[self._step][3], self._colorVal)
+		#~ self._step += amt
+# Choose value for random shape
+num = random.random()
 # Create sample volumes
 sampleVolumes = [0]*100
 for i in range(0, 100):
@@ -56,6 +59,6 @@ color = genColor(genMood(key='Cma'))
 #~ shape = random.choice(shapes)
 shapes = genShapes(sampleVolumes)
 # Create object and set values
-visualize = Visualize(led, color, 'square', shapes)
+visualize = Visualize(led, color, num, shapes)
 # Run object
 visualize.run(sleep = 100, max_steps = visualize._numShapes)
